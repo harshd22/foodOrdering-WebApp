@@ -1,0 +1,37 @@
+<html>
+<% include partials/header.ejs %>
+
+<body>
+    <!--NAVBAR-->
+    <% include partials/navbar.ejs %>
+    <h1 align="center">Order history</h1>
+
+    <table class="table">
+            
+          <thead>
+              <tr>
+                <th >Order ID</th>
+                <th >User ID</th>
+                <th >Product ID</th>
+                <th >Quantity</th>
+                <th >Price</th>
+                <th >Address</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < data.length; i++){ %>
+              <tr>
+                <td><%= data[i].order_id %></td>
+                <td><%= data[i].user_id %></td>
+                <td><%= data[i].product_id %></td>
+                <td><%= data[i].quantity %></td>
+                <td>$<%= data[i].price %></td>
+                <td><%= data[i].address %></td>       
+              </tr>            
+            <% } %>
+          </tbody>
+          </table>
+          <a href="/" class="btn btn-primary btn-large" role="button">Return</a>
+        
+</body>
+</html>

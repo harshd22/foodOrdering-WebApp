@@ -1,0 +1,44 @@
+<html>
+<% include partials/header.ejs %>
+
+<body>
+    <!--NAVBAR-->
+    <% include partials/adminnav.ejs %>
+    <!--Error-->
+    <% if(data.rows.length == 0){ %>
+        <div class="alert alert-danger">
+          <p style = "text-align: center;"><strong>No resut found..</strong></p>   
+        </div>
+        <% } else {%>
+    <!--Items-->
+    <div class="container">
+        <div class="row">
+            <% for(var i=0; i < data.rows.length ; i++){ %>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img class="image-responsive" style="max-height: 150px;" src="<%= data.rows[i].image%>" alt="..."
+                        class="img-responsive">
+                    <div class="caption">
+                        <h3>
+                            <%= data.rows[i].name%>
+                        </h3>
+                        <p style="color: grey">
+                            <%= data.rows[i].description%>
+                        </p>
+                        <div class="clearfix">
+                            <div style="font-weight: bold; font-size: 16;">$
+                                <%= data.rows[i].price%>
+                            </div>
+                            <a href="/addtocart/<%= data.rows[i].id%>" class="btn btn-success pull-right" role="button">Add
+                                To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+</body>
+
+</html>

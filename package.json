@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "fb": "^2.0.0",
+    "https": "^1.0.0",
+    "md5": "^2.2.1",
+    "nodemailer": "^4.6.8",
+    "pg": "^7.6.0"
+  }
+}

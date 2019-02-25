@@ -1,0 +1,97 @@
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '575618999540163',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v3.2'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // window.load=()=>{
+    //     FB.getLoginStatus(function(response) {
+    //         //statusChangeCallback(response);
+    //         console.log(response);
+    //     });
+    // }
+    function loginWithFB() {
+        FB.login((res) =>{
+            let token = res.authResponse.accessToken
+            console.log(token)
+            window.location = '/login?fb_token='+token
+        }, {scope: 'email'})
+    }
+
+</script>
+<div class="container">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Account Register</div>
+                <div class="panel-body">
+                    <form action="/register" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input name="password" type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">Confirm Password</label>
+                            <input name="password2" type="password" class="form-control" id="exampleInputPassword2"
+                                   placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputDisplay">Display name</label>
+                            <input name="display_name" type="text" class="form-control" id="exampleInputDisplay"
+                                   placeholder="Display">
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
+                    </form>
+                    <hr/>
+                    <p>has account yet? go <a href="/login"><b>login</b></a></p>
+                    <hr/>
+                    <div style="text-align: center; color: #888;margin: 20px 0">or</div>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="loginWithFB()">Facebook</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

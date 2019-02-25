@@ -1,0 +1,76 @@
+<html>
+<% include partials/header.ejs %>
+
+<body>
+    <!--NAVBAR-->
+    <% include partials/adminnav.ejs %>
+  
+    <table class="table">
+            
+          <thead>
+              <tr>
+                <th >Order ID</th>
+                <th >User ID</th>
+                <th >Product ID</th>
+                <th >Quantity</th>
+                <th >Price</th>
+                <th >Address</th>
+                <th >Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < data.length; i++){ %>
+              <%if(!edit && id != data[i].order_id){%>
+              <tr>
+                <td><%= data[i].order_id %></td>
+                <td><%= data[i].user_id %></td>
+                <td><%= data[i].product_id %></td>
+                <td><%= data[i].quantity %></td>
+                <td><%= data[i].price %></td>
+                <td><%= data[i].address %></td>
+
+                <td><a href="/loadorder/edit/<%=data[i].order_id%>" class="btn btn-primary btn-large" role="button">Edit</a></td>
+                <td><a href="/loadorder/delete/<%=data[i].order_id%>" class="btn btn-sm btn-danger" role="button">Delete</a></td>
+                <td><a href="/loadorder/archive/<%=data[i].order_id%>" class="btn btn-sm btn-danger" role="button">Archive</a></td>
+                
+              </tr>
+            <%} else if(id == data[i].order_id) {%>
+
+              <form action = "/loadorder/save" , method = "GET" >
+              <tr>
+                <td><%= data[i].order_id %></td>
+              <td><%= data[i].user_id %></td>
+              <td><input type="text" name="product_id" placeholder="Product ID" id="product_id" data-type="string" data-message="This field can not be empty"/></td>
+              <td><input type="text" name="quantity" placeholder="Quantity" id="quantity" data-type="string" data-message="This field can not be empty"/></td>
+              <td><input type="text" name="price" placeholder="Price" id="price" data-type="string" data-message="This field can not be empty"/></td>
+              <td><input type="text" name="address" placeholder="Address" id="address" data-type="string" data-message="This field can not be empty"/></td>
+              <td><input type = "submit" value= "Save" class="btn btn-inf"></td>
+             </tr>
+            </form>
+              <% } %>
+            <% } %>
+          </tbody>
+          </table>
+          <a href="/admin" class="btn btn-primary btn-large" role="button">Cancel</a>
+        <!-- </div>
+        <div id="confirm-modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>Confirm Delete</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to remove the order?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-yes="" data-dismiss="modal" id="confirm-delete" type="button" class="btn btn-default">Yes</button>
+                        <button data-dismiss="modal" type="button" class="btn btn-default">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+  
+</body>
+</html>

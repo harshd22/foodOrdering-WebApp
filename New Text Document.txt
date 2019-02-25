@@ -1,0 +1,12 @@
+ID: 
+54228827590-kpuv19j8v9tick2vglbpdsppcfo4fepj.apps.googleusercontent.com 
+SECRET:
+ n4VVdaRnw9azRy1_3_9J7iOM 
+
+
+
+
+ Client ID
+54228827590-60e2rb9k3bp8r4k9dgd1lienc5clee0c.apps.googleusercontent.com
+Client secret
+e9U2tXfwKbte_JfmKJjsNLVP 

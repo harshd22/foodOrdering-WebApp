@@ -1,0 +1,58 @@
+<html>
+<% include partials/header.ejs %>
+
+<body>
+    <!--NAVBAR-->
+    <% include partials/navbar.ejs %>
+
+    <% if(cartProducts.length > 0){ %>
+    <!--Items-->
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <ul class="list-group">
+                <% for(var i = 0; i < cartProducts.length; i++){ %>
+                <li class="list-group-item">
+                    <img class="image-responsive" style="max-height: 150px;" src="<%= cartProducts[i].item.image%>"
+                        class="img-responsive">
+                    <span class="badge badge-info">Qty:
+                        <%= cartProducts[i].qty %></span>
+                    <strong>
+                        <%= cartProducts[i].item.name %></strong>
+                    <span class="label label-success">$
+                        <%= cartProducts[i].price %></span>
+                    <div class="btn-group">
+
+                        <a href="/removefromcart/<%=cartProducts[i].item.id%>" type="button" style="float: right;"
+                            class="btn btn-danger  btn-sm pull-right">Remove item</a>
+
+
+
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <strong>Total: $
+                <%= total %></strong>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <button type="button" class="btn btn-success btn-lg btn-block" onclick = "location.href='/checkout'">Checkout</button>
+        </div>
+    </div>
+    <% } else { %>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No items in cart</h2>>
+        </div>
+    </div>
+    <% } %>
+</body>
+
+</html>

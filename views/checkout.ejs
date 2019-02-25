@@ -1,0 +1,89 @@
+<html>
+<% include partials/header.ejs %>
+
+<body>
+    <!-- NAVBAR -->
+    <% include partials/navbar.ejs %>
+    <% if(cartProducts.length > 0){ %> 
+    <!--Items-->
+   <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <ul class="list-group">
+                <% for(var i = 0; i < cartProducts.length; i++){ %>
+                <li class="list-group-item">
+                    <img class="image-responsive" style="max-height: 150px;" src="<%= cartProducts[i].item.image%>"
+                        class="img-responsive">
+                    <span class="badge badge-info">Qty:
+                        <%= cartProducts[i].qty %></span>
+                    <strong>
+                        <%= cartProducts[i].item.name %></strong>
+                    <span class="label label-success">$
+                        <%= cartProducts[i].price %></span>
+                    <div class="btn-group">
+
+                        <a href="/removefromcart/<%=cartProducts[i].item.id%>" type="button" style="float: right;"
+                            class="btn btn-danger  btn-sm pull-right">Remove item</a>
+
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <p style = "text-align: center;"><strong>
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <strong>Total: $
+                <%= total %></strong>
+        </div>
+    </div>
+
+
+    <form action = "/checkout" method="post" id = "check-out-form">
+        <div class="form-group"></div>
+            <fieldset id = "fieldset-delivery">
+            <h1 align="center">Delivery Information </h1>
+    
+    <div>
+        <p style = "text-align: center;"><strong>
+        <label for="name">Name</label>
+        <p style = "text-align: center;"><strong></strong>
+        <input type="text" name="name" id="name" data-type="string" data-message="This field can not be empty"/>
+    </div>
+    
+    <div class="form-group">
+        <p style = "text-align: center;"><strong>
+        <label for = "address"> Address </label>
+        <p style = "text-align: center;"><strong>
+            <input type="text" name="address" id="address" data-type="string" data-message="This field can not be empty"/>
+    </div>
+
+    <div>
+            <p style = "text-align: center;"><strong>
+            <label for = "phone"> Phone Number</label>
+            <p style = "text-align: center;"><strong>
+                <input type="number" name="phone" id="phone" data-type="number" data-message="This field can not be empty"/>
+        </div>
+    </fieldset>
+
+
+    <div class="row">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <button type = "submit" class="btn btn-success btn-lg btn-block" onclick = "location.href='/order_placed'">Confirm</button>
+            </div>
+    </div>
+    </form>
+
+    <hr>
+    
+    <% } else { %>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>No items in cart</h2>>
+        </div>
+    </div>
+    <% } %>
+</body>
+
+</html>
